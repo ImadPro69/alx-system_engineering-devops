@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
 #include <unistd.h>
 
 /**
- * infinite_while - a function that runs Forever and returns nothing
+ * infinite_while - a function that runs forever and returns nothing
  * Return: 0 in the end
 */
 int infinite_while(void)
@@ -17,28 +16,35 @@ int infinite_while(void)
 }
 
 /**
- * main - the entry to a Program that creats 5 zombie process
- * Return: 0 on sucess
+ * main - the entry to a program that creates 5 zombie processes
+ * Return: 0 on success
 */
 int main(void)
 {
-    pid_t child_pid;
-    int i;
+    int children_processes = 0;
+    pid_t pid;
 
-    for (i = 0; i < 5; i++)
+    while (children_processes < 5)
     {
-        child_pid = fork();
-        if (child_pid > 0)
+        pid = fork();
+        if (pid == -1)
         {
-            printf("Zombie process created, PID: %d\n", child_pid);
+            perror("fork");
+            exit(1);
         }
-        else
+        else if (pid == 0) // Child process
         {
-            exit(0);
+            printf("Zombie process created, PID: %i\n", getpid());
+            exit(0); // Child process exits immediately, becoming a zombie
+        }
+        else // Parent process
+        {
+            children_processes++;
         }
     }
 
-    infinite_while();
+    if (pid != 0)
+        infinite_while();
 
     return (0);
 }
