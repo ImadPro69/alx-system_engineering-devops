@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
+# This script displays its own PID.
+
 echo $$
+
+# Optional: If you want to display the PID with a custom message
+# echo "My PID is: $$"
+
