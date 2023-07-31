@@ -3,6 +3,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+/**
+ * infinite_while - a function that runs Forever and returns nothing
+ * Return: 0 in the end
+*/
 int infinite_while(void)
 {
     while (1)
@@ -12,6 +16,10 @@ int infinite_while(void)
     return (0);
 }
 
+/**
+ * main - the entry to a Program that creats 5 zombie process
+ * Return: 0 on sucess
+*/
 int main(void)
 {
     pid_t child_pid;
