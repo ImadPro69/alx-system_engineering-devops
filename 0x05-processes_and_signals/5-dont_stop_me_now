@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
 # This script starts the 4-to_infinity_and_beyond script and stops it.
 
+# Start the 4-to_infinity_and_beyond script in the background
+./4-to_infinity_and_beyond &
+
+# Save the PID of the 4-to_infinity_and_beyond process
 pid=$(pgrep "4-to_infinity_and_beyond")
+
+# Wait for the process to finish
+wait "$pid"
+
+echo "Terminated"
+
