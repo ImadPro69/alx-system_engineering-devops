@@ -14,27 +14,15 @@ int infinite_while(void)
 int main(void)
 {
     int i;
-    pid_t pid;
 
     for (i = 0; i < 5; i++)
     {
-        pid = fork();
-
-        if (pid == -1)
+        if (fork() == 0)
         {
-            perror("Error creating child process");
-            exit(EXIT_FAILURE);
-        }
-        else if (pid == 0)
-        {
-            // Child process
             printf("Zombie process created, PID: %d\n", getpid());
-            exit(EXIT_SUCCESS);
+            exit(0);
         }
     }
 
-    infinite_while(); // Parent process will wait forever
-
-    return (EXIT_SUCCESS);
+    return infinite_while();
 }
-
