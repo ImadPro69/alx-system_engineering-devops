@@ -7,3 +7,12 @@ server-id       = 2
 log_bin         = /var/log/mysql/mysql-bin.log
 relay_log       = /var/log/mysql/mysql-relay-bin
 binlog_do_db    = tyrell_corp
+
+# If MySQL is running as a replication slave, this should be
+# changed. Ref https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_tmpdir
+# tmpdir                = /tmp
+#
+# Instead of skip-networking the default is now to listen only on
+# localhost which is more compatible and is not less secure.
+bind-address            = 127.0.0.1
+mysqlx-bind-address     = 127.0.0.1
